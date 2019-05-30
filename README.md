@@ -18,6 +18,7 @@ The Peterhof genetic collection of Saccharomyces cerevisiae strains (PGC) is a l
 * snpEff
 * GATK
 * seqkit
+* bwa
 
 ## Files description
 
@@ -59,6 +60,21 @@ Then we run the consensus algorithm. We use ```nanopolish_makerange.py``` to spl
 After all polishing jobs are complete, me can merge the individual 50kb segments together back into the final assembly:
 
 ```nanopolish vcf2fasta -g yeast_1d.guppy_213.canu.fa polished.*.vcf > polished_genome.fa```
+
+### Racon polishing
+
+Racon can be used as a polishing tool after the assembly with either Illumina data or data produced by third generation of sequencing. The type of data inputed is automatically detected. Racon takes as input only three files: contigs in FASTA/FASTQ format, reads in FASTA/FASTQ format and overlaps/alignments between the reads and the contigs in MHAP/PAF/SAM format. 
+
+```bwa index  polished_genome.fa```
+
+Where ``` polished_genome.fa``` is polished genome with ONT reads.
+
+```bwa mem polished_genome.fa M1628_PE_merged.fastq.gz > alignment_polished_wt_PE_MERGED.sam```
+
+Where ```M1628_PE_merged.fastq.gz``` are Illumina reads.
+
+```racon M1628_PE_merged.fastq.gz alignment_polished_wt_PE_MERGED.sam polished_genome.fa > polished_genome_racon.fa```
+
 
 
 
