@@ -31,7 +31,7 @@ To remove duplicates we use ``seqkit`` with ONT reads:
 
 ```seqkit rmdup yeast_1d.guppy_213.fastq.gz > yeast_rmdup.fastq.gz```
 
-Where ```yeast_1d.guppy_213.fastq.gz``` is ONT reads and ```yeast_rmdup.fastq.gz``` is ONT without duplicates.
+Where ```yeast_1d.guppy_213.fastq.gz``` is ONT reads and ```yeast_rmdup.fastq.gz``` is ONT reads without duplicates.
 
 ### Genome polishing
 #### Data preprocessing
@@ -46,14 +46,14 @@ We get the following files: ```yeast_rmdup.fasta.gz.index```, ```yeast_rmdup.fas
 
 #### Compute a new consensus sequence for a draft assembly
 
-Now that we have ```yeast_rmdup.fastq.gz``` indexed with ```nanopolish index```, and have a draft genome assembly ```yeast_1d.guppy_213.canu.fa```, we can begin to improve the assembly with nanopolish.
+Now that we have ```yeast_rmdup.fastq.gz``` indexed with ```nanopolish index```, and have a previously assembled draft genome ```yeast_1d.guppy_213.canu.fa```, we can begin to improve the assembly with nanopolish.
 
 First, we align the original reads (```yeast_rmdup.fastq.gz```) to the draft assembly (```yeast_1d.guppy_213.canu.fa```) and sort alignments:
 
 ```minimap2 -ax map-ont -t 8 yeast_1d.guppy_213.canu.fa yeast_rmdup.fastq.gz | samtools sort -o read_after_minimap2_sorted.bam -T reads.tmp``` 
 ```samtools index read_after_minimap2_sorted.bam```
 
-Then we run the consensus algorithm. We use ```nanopolish_makerange.py``` to split the draft genome assembly into 50kb segments, so that we can run the consensus algorithm on each segment in parallel. The output would be the polished segments in ```fasta``` format:
+Then we run the consensus algorithm. We use ```nanopolish_makerange.py``` to split the draft genome assembly into 50kb segments, so that we can run the consensus algorithm on each segment in parallel:
 
 ```python nanopolish_makerange.py yeast_1d.guppy_213.canu.fa | parallel --results nanopolish.results -P 2 nanopolish/nanopolish variants --consensus -o polished.{1}.vcf -w {1} -r yeast_rmdup.fasta.gz -b read_after_minimap2_sorted.bam -g yeast_1d.guppy_213.canu.fa -t 4 --min-candidate-frequency 0.1 ```
 
@@ -74,6 +74,12 @@ Where ``` polished_genome.fa``` is polished genome with ONT reads.
 Where ```M1628_PE_merged.fastq.gz``` are Illumina reads.
 
 ```racon M1628_PE_merged.fastq.gz alignment_polished_wt_PE_MERGED.sam polished_genome.fa > polished_genome_racon.fa```
+
+### QUAST evaluation of genome assemblies
+
+```quast -R S288C.ref.fa yeast_1d.guppy_213.canu.fa polished_genome.fa polished_genome_racon.fa```
+
+Where ```S288C.ref.fa``` is S288C strain reference genome.
 
 
 
