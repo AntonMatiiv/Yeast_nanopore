@@ -93,7 +93,8 @@ Where ```uniprot-proteome%3AUP000002311.fasta``` list of protein amino acid sequ
 
 SnpEff needs a database to perform genomic annotations. In order to build a database for a new genome, we need to: 
 
-```export DBNAME=Saccharomyces_cerevisiae_1A-D1628_wt
+```
+export DBNAME=Saccharomyces_cerevisiae_1A-D1628_wt
 export GFF=/path/to/exonerate_p2g_bestn1.gtf
 export FASTA =/path/to/polished_genome_racon.fa
 
@@ -102,17 +103,26 @@ cd /usr/local/snpEff
 mkdir data/$DBNAME
 
 #Copy the files into snpEff's directory structure
- cp $GFF data/$DBNAME/genes.gff
- cp $FASTA data/$DBNAME/sequences.fa
+cp $GFF data/$DBNAME/genes.gff
+cp $FASTA data/$DBNAME/sequences.fa
  
- #Edit snpEff.config and insert your specific database information:
- echo "$DBNAME.genome : $DBNAME" >> snpEff.config
+#Edit snpEff.config and insert your specific database information:
+echo "$DBNAME.genome : $DBNAME" >> snpEff.config
 
- #Build the database
- java -jar snpEff.jar build -gff2 -v $DBNAME
+#Build the database
+java -jar snpEff.jar build -gff2 -v $DBNAME
+```
+ 
+ ### Variant calling with the GATK
+ 
+ Calling SNPs and indels via local re-assembly of haplotypes with ```calling.sh``` script.
+ 
+ Then perform joint genotyping on gVCF files produced by HaplotypeCaller:
+ 
  ```
- 
- 
+samples=$(find . | sed 's/.\///' | grep -E 'g.vcf$' | sed 's/^/--variant /')
+java -Xmx8g -jar /path/to/GATK -T GenotypeGVCFs -R /path/to/polished_genome_racon.fa -o $(echo $samples)
+```
  
  
 
