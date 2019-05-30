@@ -85,8 +85,26 @@ Where ```S288C.ref.fa``` is S288C strain reference genome.
 
 ```exonerate --model protein2genome --bestn 1 uniprot-proteome%3AUP000002311.fasta polished_genome_racon.fa --showtargetgff yes --showvulgar no --showalignment no > exonerate_p2g_bestn1.gtf```
 
-Where ```uniprot-proteome%3AUP000002311.fasta``` list of protein amino acid sequences of S288C from UniProt database and ```exonerate_p2g_bestn1.gtf``` annotation in gtf format.
+Where ```uniprot-proteome%3AUP000002311.fasta``` list of protein amino acid sequences of S288C from UniProt database and ```exonerate_p2g_bestn1.gtf``` annotation in gff2 format.
 
+### Building Snpeff Database
 
+```export DBNAME=Saccharomyces_cerevisiae_1A-D1628_wt
+export GFF=/path/to/exonerate_p2g_bestn1.gtf
+export FASTA =/path/to/polished_genome_racon.fa
+
+#Go into the snpEff directory and create a directory for your files
+cd /usr/local/snpEff
+mkdir data/$DBNAME
+
+#Copy the files into snpEff's directory structure
+ cp $GFF data/$DBNAME/genes.gff
+ cp $FASTA data/$DBNAME/sequences.fa
+ 
+ #Edit snpEff.config and insert your specific database information:
+ echo "$DBNAME.genome : $DBNAME" >> snpEff.config
+
+ #Build the database
+ java -jar snpEff.jar build -gff2 -v $DBNAME```
 
 
