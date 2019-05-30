@@ -29,7 +29,7 @@ The Peterhof genetic collection of Saccharomyces cerevisiae strains (PGC) is a l
 ## Main commands
 ### Duplicates removal
 
-To remove duplicates we use ``seqkit`` with ONT reads:
+Firstly, we need to remove duplicates from ONT reads by using ``seqkit`` with ONT reads:
 
 ```seqkit rmdup yeast_1d.guppy_213.fastq.gz > yeast_rmdup.fastq.gz```
 
@@ -38,7 +38,7 @@ Where ```yeast_1d.guppy_213.fastq.gz``` is ONT reads and ```yeast_rmdup.fastq.gz
 ### Genome polishing
 #### Data preprocessing
 
-Nanopolish needs access to the signal-level data measured by the nanopore sequencer. To begin, we need to create an index readdb file that links read ids with their signal-level data in the FAST5 files:
+The original purpose of nanopolish is to improve the consensus accuracy of an assembly of Oxford Nanopore Technology sequencing reads. Nanopolish needs access to the signal-level data measured by the nanopore sequencer. To begin, we need to create an index readdb file that links read ids with their signal-level data in the FAST5 files:
 
 ```nanopolish index -d ./uncleaned_fast5 yeast_rmdup.fastq.gz```
 
@@ -79,15 +79,23 @@ Where ```M1628_PE_merged.fastq.gz``` are Illumina reads.
 
 ### QUAST evaluation of genome assemblies
 
+QUAST evaluates genome assemblies by computing various metrics. It works both with and without reference genomes. The tool accepts multiple assemblies, thus is suitable for comparison.
+
 ```quast -R S288C.ref.fa yeast_1d.guppy_213.canu.fa polished_genome.fa polished_genome_racon.fa```
 
 Where ```S288C.ref.fa``` is S288C strain reference genome.
 
+As a result we obtain some metrics calculated:
+
+
+
 ### Functional annotation of polished genome
+
+Exonerate is a generic tool for pairwise sequence comparison. It allows you to align sequences using a many alignment models. We use ```protein2genome``` model and we will report the best 1 result for each protein query:
 
 ```exonerate --model protein2genome --bestn 1 uniprot-proteome%3AUP000002311.fasta polished_genome_racon.fa --showtargetgff yes --showvulgar no --showalignment no > exonerate_p2g_bestn1.gtf```
 
-Where ```uniprot-proteome%3AUP000002311.fasta``` list of protein amino acid sequences of S288C from UniProt database and ```exonerate_p2g_bestn1.gtf``` annotation in gff2 format.
+Where ```uniprot-proteome%3AUP000002311.fasta``` list of protein amino acid sequences of S288C from UniProt database (https://www.uniprot.org/proteomes/UP000002311) and ```exonerate_p2g_bestn1.gtf``` annotation in gff2 format.
 
 ### Building Snpeff Database
 
