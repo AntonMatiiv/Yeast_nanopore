@@ -105,6 +105,11 @@ mkdir data/$DBNAME
  echo "$DBNAME.genome : $DBNAME" >> snpEff.config
 
  #Build the database
- java -jar snpEff.jar build -gff2 -v $DBNAME```
+ java -jar snpEff.jar build -gff2 -v $DBNAME
+ ```
+ 
+ 
+ 
+ 
 
 
