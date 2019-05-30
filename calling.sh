@@ -6,7 +6,7 @@ mkdir bams gvcfs logs
 for i in *_R1_*fastq.gz
 #Where *_R1_*fastq.gz is regex for mutants Illumina reads
 do
-        bwa mem -t 32 -R "@RG\tID:${i%%_R1*}\tSM:S${i%%_*}\tLB:1\tPL:illumina" 1a-d1628 $i ${i%%_R1*}_R2*gz | /path/to/software/samtools view -bS - > /path/to/bams/${i%%_R1*}.bam
+        bwa mem -t 32 -R "@RG\tID:${i%%_R1*}\tSM:S${i%%_*}\tLB:1\tPL:illumina" $i ${i%%_R1*}_R2*gz | /path/to/software/samtools view -bS - > /path/to/bams/${i%%_R1*}.bam
 done
 cd bams
 for i in M*bam
