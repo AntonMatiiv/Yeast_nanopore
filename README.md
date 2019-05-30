@@ -89,6 +89,8 @@ Where ```uniprot-proteome%3AUP000002311.fasta``` list of protein amino acid sequ
 
 ### Building Snpeff Database
 
+SnpEff needs a database to perform genomic annotations. In order to build a database for a new genome, we need to: 
+
 ```export DBNAME=Saccharomyces_cerevisiae_1A-D1628_wt
 export GFF=/path/to/exonerate_p2g_bestn1.gtf
 export FASTA =/path/to/polished_genome_racon.fa
