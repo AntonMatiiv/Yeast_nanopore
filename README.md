@@ -31,6 +31,7 @@ The goal of the project is to identify compensatory mutations that allow cells t
 
 * ```report.pdf```  - report output file of QUAST
 * ```calling.sh``` - script for variant calling with the GATK
+* ```QUAST_pics``` - images from QUAST report
 
 ## Main commands
 ### Duplicates removal
