@@ -23,7 +23,8 @@ The Peterhof genetic collection of Saccharomyces cerevisiae strains (PGC) is a l
 
 ## Files description
 
-* ```report.pdf```  - report output file of QUAST 
+* ```report.pdf```  - report output file of QUAST
+* ```calling.sh``` - script for variant calling with the GATK
 
 ## Main commands
 ### Duplicates removal
