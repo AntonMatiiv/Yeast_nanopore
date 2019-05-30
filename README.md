@@ -17,6 +17,7 @@ The Peterhof genetic collection of Saccharomyces cerevisiae strains (PGC) is a l
 * exonerate
 * snpEff
 * GATK
+* Picard
 * seqkit
 * bwa
 
