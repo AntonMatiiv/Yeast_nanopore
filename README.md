@@ -81,6 +81,12 @@ Where ```M1628_PE_merged.fastq.gz``` are Illumina reads.
 
 Where ```S288C.ref.fa``` is S288C strain reference genome.
 
+### Functional annotation of polished genome
+
+```exonerate --model protein2genome --bestn 1 uniprot-proteome%3AUP000002311.fasta polished_genome_racon.fa --showtargetgff yes --showvulgar no --showalignment no > exonerate_p2g_bestn1.gtf```
+
+Where ```uniprot-proteome%3AUP000002311.fasta``` list of protein amino acid sequences of S288C from UniProt database and ```exonerate_p2g_bestn1.gtf``` annotation in gtf format.
+
 
 
 
