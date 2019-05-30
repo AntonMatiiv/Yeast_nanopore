@@ -4,16 +4,20 @@ export GATK='/path/to/gatk-protected/target/executable/GenomeAnalysisTK.jar'
 export PICARD='/path/to/picard-tools-2.0.1/picard.jar'
 mkdir bams gvcfs logs
 for i in *_R1_*fastq.gz
+#Where *_R1_*fastq.gz is regex for mutants Illumina reads
 do
         bwa mem -t 32 -R "@RG\tID:${i%%_R1*}\tSM:S${i%%_*}\tLB:1\tPL:illumina" 1a-d1628 $i ${i%%_R1*}_R2*gz | /path/to/software/samtools view -bS - > /path/to/bams/${i%%_R1*}.bam
 done
 cd bams
 for i in M*bam
+#Where M*bam is bam files for mutants
 do
         /path/to/samtools sort -T ${i%%.bam} -o ${i%%.bam}.sorted.bam $i &
 done
 wait
 for i in M*.sorted.bam
+#Where M*.sorted.bam is regex for mutants
+is bam files for mutants
 do
         mv $i ${i%%_L008*}.bam
 done
@@ -32,6 +36,7 @@ done
 wait
 rm -rf tmp
 for i in M*.dedup.bam
+#Where M*.dedup.bam is regex for mutants
 do
        samtools index $i &
 done
