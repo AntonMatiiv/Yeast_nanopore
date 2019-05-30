@@ -139,6 +139,17 @@ samples=$(find . | sed 's/.\///' | grep -E 'g.vcf$' | sed 's/^/--variant /')
 java -Xmx8g -jar /path/to/GATK -T GenotypeGVCFs -R /path/to/polished_genome_racon.fa -o $(echo $samples)
 ```
  
+ ### Examination of allele counts in g.vcf for mutants
  
+Bash:
+```
+cut -f 8 M_total_ploidy1.g.vcf | cut -c 1-6 | grep -o '^AC=[0-9]*' > ac
+grep -o '[0-9]*' ac > numbers_ac
+```
+R:
+```
+numbersac <- read.table("/path/to/numbers_ac", header = TRUE)
+hist(numbersac$X1, freq = TRUE, col = "blue", xlab="Allele counts", ylab="Frequency", main = "", nclass = 100)
+```
 
 
