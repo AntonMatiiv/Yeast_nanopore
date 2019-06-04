@@ -167,11 +167,10 @@ If compared wit QUAST, ```polished_genome_racon.fa``` has 205.12 mismatches per 
 
 ### Functional annotation of Saccharomyces cerevisiae 1A-D1628 strain
 
-In order to make annotation of Saccharomyces cerevisiae 1A-D1628 strain we used ```Exonerate```, ```Maker```, ```RGAAT``` and ```RAAT``` tools. But only with ```Exonerate``` is was passible to create annotation with similar gene numvers compared with closely related Saccharomyces cerevisiae S288C strain. Also, this obtained annotation was used for SnpEff database building.
-
+In order to make annotation of Saccharomyces cerevisiae 1A-D1628 strain we used ```Exonerate```, ```Maker```, ```RGAAT``` and ```RAAT``` tools. But only with ```Exonerate``` is was passible to create annotation with similar gene numbers compared with closely related Saccharomyces cerevisiae S288C strain. Also, this obtained annotation was used for SnpEff database building.
 
 ### Analysis of the genetic variants in the genomes of mutant derivatives 1A-D1628
 
-
+At this stage we obtained multiple g.vcf file that we will use for mutations identification with our SnpEff database after filtering. So, the analysis is not finished and needs for the continuation. 
 
 
