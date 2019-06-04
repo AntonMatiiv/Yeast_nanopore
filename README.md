@@ -156,11 +156,16 @@ hist(numbersac$X1, freq = TRUE, col = "blue", xlab="Allele counts", ylab="Freque
 ```
 
 ## Current results
+### Genome assemly of Saccharomyces cerevisiae 1A-D1628 strain
 
 At the moment we have obtained 3 genome assemblies of Saccharomyces cerevisiae 1A-D1628 strain:
 * ```yeast_1d.guppy_213.canu.fa``` - draft genome assembly from ONT reads, that was assemplied previously with ```canu```
 * ```polished_genome.fa``` - enhanced polished with ONT raw reads genome assembly
 * ```polished_genome_racon.fa``` - even more enhanced with Illumina reads genome assembly
+
+If compared wit QUAST, ```polished_genome_racon.fa``` has 205.12 mismatches per 100 kbp (```yeast_1d.guppy_213.canu.fa``` has 212.37, ```polished_genome.fa``` has 207.85) and 25.04 ndels per 100 kbp (```yeast_1d.guppy_213.canu.fa``` has 343.76, ```polished_genome.fa``` has 73.09). So, we can assume ```polished_genome_racon.fa``` is our best genome assemply of Saccharomyces cerevisiae 1A-D1628 strain.
+
+### Functional annotation of Saccharomyces cerevisiae 1A-D1628 strain
 
 
 
