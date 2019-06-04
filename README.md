@@ -2,7 +2,7 @@
 ## Description
 The Peterhof genetic collection of Saccharomyces cerevisiae strains (PGC) is a large laboratory fund, which has accumulated several thousand strains for more than half a century. Several PGC strains have been widely used in certain areas of yeast research, but their genomes have not yet been fully studied. The genetic distance between the precursor PGC and S288C is comparable to that between two geographically isolated populations.This project is a continuation of a project to assemble the yeast genome from Oxford Nanopore data. During this project it is supposed to complete the assembly of the reference genome of strain 1A-D1628 from PGC, and also to compare the genomes of other strains (74-D694, etc.) with the obtained reference assembly. Also, it is important to find genetic variants associated with certain features of the phenotype of mutant derivatives 1A-D1628 (based on data obtained using the Illumina technology).
 
-## Ggoals and objectives
+## Goals and objectives
 ### Goal
 
 The goal of the project is to identify compensatory mutations that allow cells to survive with the disruption of the gene encoding the vital translation termination factor.
@@ -15,17 +15,17 @@ The goal of the project is to identify compensatory mutations that allow cells t
 
 ## Requirements
 
-* nanopolish
-* samtools
-* minimap2
-* QUAST
-* racon
-* exonerate
-* snpEff
-* GATK
-* Picard
-* seqkit
-* bwa
+* nanopolish version 0.11.1
+* samtools version: 1.9
+* minimap2 version 2.14-r894-dirty
+* QUAST version 4.5
+* racon version v1.3.3
+* exonerate version 2.4.0
+* snpEff version 4.3t
+* GATK version 4.1.2.0
+* Picard version 2.0.1
+* seqkit version v0.10.1
+* bwa version 0.7.17-r1188
 
 ## Files description
 
