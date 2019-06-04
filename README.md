@@ -16,7 +16,7 @@ The goal of the project is to identify compensatory mutations that allow cells t
 ## Requirements
 
 * nanopolish version 0.11.1
-* samtools version: 1.9
+* samtools version 1.9
 * minimap2 version 2.14-r894-dirty
 * QUAST version 4.5
 * racon version v1.3.3
