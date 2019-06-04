@@ -155,4 +155,13 @@ numbersac <- read.table("/path/to/numbers_ac", header = TRUE)
 hist(numbersac$X1, freq = TRUE, col = "blue", xlab="Allele counts", ylab="Frequency", main = "", nclass = 100)
 ```
 
+## Current results
+
+At the moment we have obtained 3 genome assemblies of Saccharomyces cerevisiae 1A-D1628 strain:
+* ```yeast_1d.guppy_213.canu.fa``` - draft genome assembly from ONT reads, that was assemplied previously with ```canu```
+* ```polished_genome.fa``` - enhanced polished with ONT raw reads genome assembly
+* ```polished_genome_racon.fa``` - even more enhanced with Illumina reads genome assembly
+
+
+
 
